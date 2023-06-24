@@ -15,7 +15,7 @@ model User {
   username  String    @unique
   password  String
   createdAt DateTime  @default(now())
-  Product   Product[]
+  Product  Product[]
 }
 
 model Product {
@@ -25,7 +25,9 @@ model Product {
   createdAt   DateTime @default(now())
   belongsToId String
   belongsTo   User     @relation(fields: [belongsToId], references: [id])
-  Update      Update[]
+  updates     Update[]
+  @@unique([id, belongsToId])
+
 }
 
 enum UPDATE_STATUS {
